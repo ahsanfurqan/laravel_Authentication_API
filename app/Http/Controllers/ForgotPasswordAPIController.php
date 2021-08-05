@@ -46,11 +46,7 @@ class ForgotPasswordAPIController extends Controller
         //     return redirect()->back()->withErrors(['error' => trans('A Network Error occurred. Please try again.')]);
         // }
         $response = $this->broker()->sendResetLink(
-            $request->only('email'),function(Message $message){
-                $message->subject($this->getEmailSubject(),
-                $message->action("Reset Link")
-            );
-            }
+            $request->only('email')
         );
         // $response = Password::sendResetLink($data, function (Message $message) {
         //     $message->subject($this->getEmailSubject());
@@ -109,19 +105,5 @@ class ForgotPasswordAPIController extends Controller
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {        
         return response()->json(['error' => ["message" => trans($response)] ], 422);    
-    }
-    private function sendResetEmail($email, $token)
-    {
-        //Retrieve the user from the database
-        $user = DB::table('users')->where('email', $email)->select('firstname', 'email')->first();
-        //Generate, the password reset link. The token generated is embedded in the link
-        $link = config('base_url') . 'password/reset/' . $token . '?email=' . urlencode($user->email);
-
-        try {
-        //Here send the link with CURL with an external email API 
-        return true;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }       
+    }   
 }
