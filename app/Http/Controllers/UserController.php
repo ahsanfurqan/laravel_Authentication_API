@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-use Mail;
-use Reminder;
-use Sentinel;
 class UserController extends Controller
 {
     function register(Request $req){
@@ -19,11 +16,11 @@ class UserController extends Controller
         return $user;
     }
     function login(Request $req){
-        $user= User::where('Email',$req->Email)->first();
-        if(!$user || !hash::check($req->Password,$user->Password)){
+        $user= User::where('email',$req->Email)->first();
+        if(!$user|| !hash::check($req->Password,$user->password)){
             return ["Error"=>"Email or Password is incorrect"]; 
         }
-        return $user->Name;
+        return $user;
     }
     function forget(){
         
