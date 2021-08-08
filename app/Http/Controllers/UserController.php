@@ -20,7 +20,7 @@ class UserController extends Controller
         if(!$user|| !hash::check($req->Password,$user->password)){
             return ["Error"=>"Email or Password is incorrect"]; 
         }
-        return $user;
+        return ["Success"=>"Login"];
     }
     function forget(){
         

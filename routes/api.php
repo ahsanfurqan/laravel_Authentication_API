@@ -22,8 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('register',[UserController::class,'register']);
-Route::post('Login',[UserController::class,'login']);
+Route::post('register',[UserController::class,'register'])->name('register');
+Route::post('Login',[UserController::class,'login'])->name('login');
 Route::post('password/email',[ForgotPasswordAPIController::class,'sendResetLinkEmail'])->name('password.email');
 Route::post('password/reset',[ResetPasswordAPIController::class,'reset']);
 Route::get('password/reset/{token}', [ResetPasswordAPIController::class,'ShowResetForm'])->name('password.reset');

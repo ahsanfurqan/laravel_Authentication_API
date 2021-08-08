@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Form</title>
+<link rel="stylesheet" href="style.css">
+
+<body class="bk">
+
+<form  id='lform'>
+<div class="login-box">    
+<h1>Login</h1>
+
+<div class="textbox">
+    <input type="text" id='email' placeholder="Username" name="email" value="">
+</div>
+
+<div class="textbox">
+    <input type="password" id='pass' placeholder="Password" name="pass" value="">
+</div>
+
+
+<input class=btn id='btn' type="submit" name="" value="Sign in">
+</div>
+</form>
+<div id="output"></div>
+</body>
+</head>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    // $("#btn").click(function(){
+    //     $.post("api/Login",{
+    //     "email":document.getElementById('email'),
+    //     "password":document.getElementById('pass')
+    //     },function(data, status){
+    // alert("Data: " + data + "\nStatus: " + status);
+    //         });
+    //     });
+
+    jQuery('#lform').submit(function(event){
+        event.preventDefault();
+        alert("this is me");    
+        // var $form =$(this),
+        // email=$form.find("input[name='email']").val(),
+        // email=$form.find("input[name='pass']").val(),
+    });
+</script>
