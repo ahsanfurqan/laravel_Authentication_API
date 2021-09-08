@@ -22,3 +22,6 @@ Route::get('/form',function(){
     return view('form');
 });
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/login',function(){
+    return view('login_form');
+});

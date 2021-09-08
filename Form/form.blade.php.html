@@ -12,14 +12,17 @@
 <h1>Login</h1>
 
 <div class="textbox">
-    <input type="text" id='email' placeholder="Username" name="email" value="">
+    <label for="inputname">Company Name</label>
+    <input type="text" class="form-control" id="inputname" >
 </div>
 
 <div class="textbox">
-    <input type="password" id='pass' placeholder="Password" name="pass" value="">
+    <label for="inputphone">Phone Number</label>
+    <input type="text" class="form-control" id="inputphone" >
 </div>
 
-
+<div><label for="input T-bottles">Total Bottles</label>
+    <input type="number" class="form-control" id="inputT-bottles"></div>
 <input class=btn id='btn' type="submit" name="" value="Sign in">
 </div>
 </form>
@@ -27,7 +30,9 @@
 </body>
 </head>
 </html>
-<script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
     // $("#btn").click(function(){
     //     $.post("api/Login",{
     //     "email":document.getElementById('email'),
@@ -37,9 +42,24 @@
     //         });
     //     });
 
-    $("#lform").submit(function(event){
-        event.defaultPrevented();
-        alert("this is me");    
+    jQuery('#lform').submit(function(event){
+        event.preventDefault();
+        // alert(jQuery('#login-form').serialize());
+            var formdata={
+                                "name":$('#inputname').val(),
+                                "phone_number":$('#inputphone').val(),
+                                "total_bottles":$('#inputT-bottles').val(),
+                            };
+            alert(formdata.name);
+        jQuery.ajax({
+            url:"http://192.168.0.183:8000/api/register/company",
+            data:formdata,
+            type:'POST',
+            dataType:'json',
+            success:function(result){
+                console.log(result);
+            }
+        });
         // var $form =$(this),
         // email=$form.find("input[name='email']").val(),
         // email=$form.find("input[name='pass']").val(),
